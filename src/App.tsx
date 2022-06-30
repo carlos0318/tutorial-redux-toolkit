@@ -25,7 +25,7 @@ function App() {
         >
           Decrement
         </button>
-        <input type="number" min={1} value={amount} onChange={(e) => setAmount(amount + 1)}  />
+        <input type="number" min={1} value={amount} onChange={(e) => setAmount(parseInt(e.target.value))}  />
         <button
           onClick={() => dispatch(incrementByAmount(amount))}
         >
