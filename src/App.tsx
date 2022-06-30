@@ -2,12 +2,24 @@ import { useState } from 'react';
 import type { RootState } from './redux/store'
 import { useSelector, useDispatch } from 'react-redux'
 import { decrement, increment, incrementByAmount } from './redux/counter/counterSlice'
+import { useGetProductsQuery } from './redux/api/apiSlice'
 
 function App() {
   const [amount, setAmount] = useState(1)
 
   const count = useSelector((state: RootState) => state.counter.value)
   const dispatch = useDispatch()
+
+  const { data, error, isLoading } = useGetProductsQuery(null)
+  console.log(data);
+
+  if(isLoading) {
+    return <span>Loading...</span>
+  }
+
+  if(error){
+    return <span>Something went wrong</span>
+  }
 
   return (
     <div>
